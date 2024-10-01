@@ -1,0 +1,159 @@
+
+/* Global Styles */
+* {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f7f6;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Container */
+.container {
+  max-width: 960px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Form Controls */
+.form-control {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Labels */
+.form-label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+/* Headings */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #333;
+}
+
+/* Navigation Tabs */
+.nav-tabs .nav-link {
+  color: #555;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.nav-tabs .nav-link:hover {
+  color: #007bff;
+  background-color: #e9ecef;
+}
+
+/* Accordion */
+.accordion-button {
+  padding: 1rem 0;
+  background-color: #f8f9fa;
+  color: #007bff;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #007bff;
+  color: white;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.accordion-body {
+  padding: 1rem;
+}
+
+/* Number Input Style */
+.total-numb {
+  font-size: 1.5rem;
+  border: none;
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 10px;
+  color: #333;
+}
+
+.total-numb:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Tooltips */
+.form-control[placeholder] {
+  position: relative;
+}
+
+.form-control[placeholder]::before {
+  content: attr(placeholder);
+  color: #888;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 0.875rem;
+}
+
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+.mt-2 {
+  margin-top: 1rem !important;
+}
+
+/* Links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.fs-1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #007bff;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .form-control {
+    font-size: 0.875rem;
+  }
+}
