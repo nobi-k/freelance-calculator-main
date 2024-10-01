@@ -10,25 +10,27 @@
 <body>
     <header>
         <h1>Фриланс Калькулятор</h1>
-        <p>Определите вашу почасовую ставку и стоимость проектов легко и быстро</p>
+        <p>Определите вашу почасовую ставку и стоимость проектов легко и быстро, просто введя нужные данные.</p>
     </header>
 
     <main class="container">
         <section>
             <h2>Расчет почасовой ставки</h2>
+            <p>Введите данные в поля ниже, чтобы узнать свою почасовую ставку. Используйте это для оценки стоимости ваших проектов.</p>
+
             <div class="form-group">
-                <label for="input-month">Я хочу зарабатывать (₽)</label>
-                <input type="number" id="input-month" placeholder="Например, 100000">
+                <label for="input-month" title="Введите сумму, которую хотите зарабатывать в месяц.">Я хочу зарабатывать (₽)</label>
+                <input type="number" id="input-month" placeholder="Например, 100000" title="Введите ваш желаемый месячный доход.">
             </div>
 
             <div class="form-group">
-                <label for="input-week">Буду работать (дни в месяц)</label>
-                <input type="number" id="input-week" placeholder="Например, 20">
+                <label for="input-week" title="Введите количество дней, которые планируете работать в месяц.">Буду работать (дни в месяц)</label>
+                <input type="number" id="input-week" placeholder="Например, 20" title="Введите количество рабочих дней в месяц.">
             </div>
 
             <div class="form-group">
-                <label for="input-day">Рабочий день (часы)</label>
-                <input type="number" id="input-day" placeholder="Например, 8">
+                <label for="input-day" title="Введите количество рабочих часов в день.">Рабочий день (часы)</label>
+                <input type="number" id="input-day" placeholder="Например, 8" title="Введите количество часов работы в день.">
             </div>
 
             <div class="form-group">
@@ -39,16 +41,20 @@
 
         <section>
             <h2>Расчет стоимости проекта</h2>
+            <p>Выберите метод расчета стоимости проекта, введите необходимые данные, и калькулятор автоматически рассчитает стоимость.</p>
+
             <div class="tabs">
                 <button class="tab-button active" onclick="openTab(event, 'simple-formula')">Простая формула</button>
                 <button class="tab-button" onclick="openTab(event, 'rap-method')">Метод RAP</button>
                 <button class="tab-button" onclick="openTab(event, 'complex-formula')">Сложная формула</button>
             </div>
 
+            <!-- Простая формула -->
             <div id="simple-formula" class="tab-content" style="display: block;">
+                <p>Простая формула расчета проекта на основе вашей почасовой ставки и предполагаемого времени выполнения проекта.</p>
                 <div class="form-group">
-                    <label for="approximate-time">Ожидаемое время выполнения (часы)</label>
-                    <input type="number" id="approximate-time" placeholder="Введите часы">
+                    <label for="approximate-time" title="Введите количество часов, необходимых для выполнения проекта.">Ожидаемое время выполнения (часы)</label>
+                    <input type="number" id="approximate-time" placeholder="Введите часы" title="Введите ожидаемое время выполнения проекта.">
                 </div>
                 <div class="form-group">
                     <label for="input-sf-total-price">Стоимость проекта</label>
@@ -56,10 +62,12 @@
                 </div>
             </div>
 
+            <!-- Метод RAP -->
             <div id="rap-method" class="tab-content" style="display: none;">
+                <p>Метод RAP позволяет быстро оценить стоимость проекта на основе ставки и коэффициента риска.</p>
                 <div class="form-group">
-                    <label for="input-rate">Ставка (RAP)</label>
-                    <input type="number" id="input-rate" placeholder="Введите ставку RAP">
+                    <label for="input-rate" title="Введите вашу ставку для метода RAP.">Ставка (RAP)</label>
+                    <input type="number" id="input-rate" placeholder="Введите ставку RAP" title="Введите вашу ставку для метода RAP.">
                 </div>
                 <div class="form-group">
                     <label for="input-rap-total-price">Стоимость проекта (метод RAP)</label>
@@ -67,18 +75,20 @@
                 </div>
             </div>
 
+            <!-- Сложная формула -->
             <div id="complex-formula" class="tab-content" style="display: none;">
+                <p>Сложная формула используется для более точных расчетов с учетом количества правок и рисков.</p>
                 <div class="form-group">
-                    <label for="input-amount-fixed">Количество правок</label>
-                    <input type="number" id="input-amount-fixed" placeholder="Введите количество правок">
+                    <label for="input-amount-fixed" title="Введите количество возможных правок.">Количество правок</label>
+                    <input type="number" id="input-amount-fixed" placeholder="Введите количество правок" title="Введите количество возможных правок для проекта.">
                 </div>
                 <div class="form-group">
-                    <label for="input-working-hours">Количество рабочих часов</label>
-                    <input type="number" id="input-working-hours" placeholder="Введите рабочие часы">
+                    <label for="input-working-hours" title="Введите количество рабочих часов для выполнения проекта.">Количество рабочих часов</label>
+                    <input type="number" id="input-working-hours" placeholder="Введите рабочие часы" title="Введите общее количество рабочих часов для проекта.">
                 </div>
                 <div class="form-group">
-                    <label for="input-range-risk">Диапазон рисков</label>
-                    <input type="range" id="input-range-risk" min="1" max="3" step="0.1">
+                    <label for="input-range-risk" title="Выберите диапазон рисков.">Диапазон рисков</label>
+                    <input type="range" id="input-range-risk" min="1" max="3" step="0.1" title="Переместите ползунок для выбора диапазона рисков.">
                     <output id="ratio-range-risk">1.5</output>
                 </div>
                 <div class="form-group">
@@ -89,6 +99,6 @@
         </section>
     </main>
 
-    <script src="app.js"></script> <!-- Подключаем твой JavaScript код сюда -->
+    <script src="app.js"></script>
 </body>
 </html>
