@@ -1,244 +1,94 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-        crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="icon" href="./favicon.png" type="image/png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Фриланс Калькулятор</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./favicon.png" type="image/png">
 </head>
 <body>
-    <header class="bg-primary text-white p-3 text-center">
+    <header>
         <h1>Фриланс Калькулятор</h1>
         <p>Определите вашу почасовую ставку и стоимость проектов легко и быстро</p>
     </header>
 
-    <main class="container mt-5">
+    <main class="container">
         <section>
             <h2>Расчет почасовой ставки</h2>
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <label for="input-month" class="form-label">Я хочу зарабатывать</label>
-                    <input
-                        type="number"
-                        id="input-month"
-                        class="form-control"
-                        placeholder="100 000 ₽ в месяц"
-                        min="0"
-                    />
-                </div>
-                <div class="col-md-4">
-                    <label for="input-week" class="form-label">Буду работать</label>
-                    <input
-                        type="number"
-                        id="input-week"
-                        class="form-control"
-                        placeholder="20 дней в месяц"
-                        value="20"
-                        min="0"
-                        max="31"
-                    />
-                </div>
-                <div class="col-md-4">
-                    <label for="input-day" class="form-label">Рабочий день</label>
-                    <input
-                        type="number"
-                        id="input-day"
-                        class="form-control"
-                        placeholder="8 часов в день"
-                        value="8"
-                        min="0"
-                        max="24"
-                    />
-                </div>
+            <div class="form-group">
+                <label for="input-month">Я хочу зарабатывать (₽)</label>
+                <input type="number" id="input-month" placeholder="Например, 100000">
             </div>
 
-            <div class="mb-5">
-                <label for="input-hourly-rate" class="form-label">Почасовая ставка</label>
-                <input
-                    type="text"
-                    id="input-hourly-rate"
-                    class="form-control fs-1"
-                    value="0 ₽"
-                    readonly
-                />
+            <div class="form-group">
+                <label for="input-week">Буду работать (дни в месяц)</label>
+                <input type="number" id="input-week" placeholder="Например, 20">
+            </div>
+
+            <div class="form-group">
+                <label for="input-day">Рабочий день (часы)</label>
+                <input type="number" id="input-day" placeholder="Например, 8">
+            </div>
+
+            <div class="form-group">
+                <label for="input-hourly-rate">Почасовая ставка</label>
+                <input type="text" id="input-hourly-rate" placeholder="0 ₽" disabled>
             </div>
         </section>
 
         <section>
             <h2>Расчет стоимости проекта</h2>
-            <nav>
-                <div class="nav nav-tabs mb-4" id="project-tab" role="tablist">
-                    <button
-                        class="nav-link active"
-                        id="simple-formula-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#simple-formula"
-                        type="button"
-                        role="tab"
-                        aria-controls="simple-formula"
-                        aria-selected="true"
-                    >
-                        Простая формула
-                    </button>
-                    <button
-                        class="nav-link"
-                        id="rap-method-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#rap-method"
-                        type="button"
-                        role="tab"
-                        aria-controls="rap-method"
-                        aria-selected="false"
-                    >
-                        Метод RAP
-                    </button>
-                    <button
-                        class="nav-link"
-                        id="complex-formula-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#complex-formula"
-                        type="button"
-                        role="tab"
-                        aria-controls="complex-formula"
-                        aria-selected="false"
-                    >
-                        Сложная формула
-                    </button>
-                </div>
-            </nav>
-            
-            <div class="tab-content">
-                <div
-                    class="tab-pane fade show active"
-                    id="simple-formula"
-                    role="tabpanel"
-                    aria-labelledby="simple-formula-tab"
-                >
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="approximate-time" class="form-label">Ожидаемое время выполнения</label>
-                            <input
-                                type="number"
-                                id="approximate-time"
-                                class="form-control"
-                                placeholder="8 часов"
-                            />
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <label for="input-sf-total-price" class="form-label">Стоимость проекта</label>
-                        <input
-                            type="text"
-                            id="input-sf-total-price"
-                            class="form-control fs-1"
-                            value="0 ₽"
-                            readonly
-                        />
-                    </div>
-                </div>
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'simple-formula')">Простая формула</button>
+                <button class="tab-button" onclick="openTab(event, 'rap-method')">Метод RAP</button>
+                <button class="tab-button" onclick="openTab(event, 'complex-formula')">Сложная формула</button>
+            </div>
 
-                <div
-                    class="tab-pane fade"
-                    id="rap-method"
-                    role="tabpanel"
-                    aria-labelledby="rap-method-tab"
-                >
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="input-rate" class="form-label">Rate (оценка)</label>
-                            <input
-                                type="number"
-                                id="input-rate"
-                                class="form-control"
-                                placeholder="3 000 ₽"
-                            />
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <label for="input-rap-total-price" class="form-label">Price (итоговая стоимость)</label>
-                        <input
-                            type="text"
-                            id="input-rap-total-price"
-                            class="form-control fs-1"
-                            value="0 ₽"
-                            readonly
-                        />
-                    </div>
+            <div id="simple-formula" class="tab-content" style="display: block;">
+                <div class="form-group">
+                    <label for="approximate-time">Ожидаемое время выполнения (часы)</label>
+                    <input type="number" id="approximate-time" placeholder="Введите часы">
                 </div>
+                <div class="form-group">
+                    <label for="input-sf-total-price">Стоимость проекта</label>
+                    <input type="text" id="input-sf-total-price" placeholder="0 ₽" disabled>
+                </div>
+            </div>
 
-                <div
-                    class="tab-pane fade"
-                    id="complex-formula"
-                    role="tabpanel"
-                    aria-labelledby="complex-formula-tab"
-                >
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <label for="input-amount-fixed" class="form-label">Количество правок</label>
-                            <input
-                                type="number"
-                                id="input-amount-fixed"
-                                class="form-control"
-                                placeholder="3 правки"
-                            />
-                        </div>
-                        <div class="col-md-4">
-                            <label for="input-working-hours" class="form-label">Время работы (часы)</label>
-                            <input
-                                type="number"
-                                id="input-working-hours"
-                                class="form-control"
-                                placeholder="8 часов"
-                            />
-                        </div>
-                        <div class="col-md-4">
-                            <label for="input-range-risk" class="form-label">Коэффициент рисков</label>
-                            <input
-                                type="text"
-                                id="input-range-risk"
-                                class="form-control"
-                                value="1.5"
-                                readonly
-                            />
-                            <input
-                                type="range"
-                                id="ratio-range-risk"
-                                class="form-range"
-                                min="1.5"
-                                max="3"
-                                step="0.1"
-                            />
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <label for="input-cf-total-price" class="form-label">Стоимость проекта</label>
-                        <input
-                            type="text"
-                            id="input-cf-total-price"
-                            class="form-control fs-1"
-                            value="0 ₽"
-                            readonly
-                        />
-                    </div>
+            <div id="rap-method" class="tab-content" style="display: none;">
+                <div class="form-group">
+                    <label for="input-rate">Ставка (RAP)</label>
+                    <input type="number" id="input-rate" placeholder="Введите ставку RAP">
+                </div>
+                <div class="form-group">
+                    <label for="input-rap-total-price">Стоимость проекта (метод RAP)</label>
+                    <input type="text" id="input-rap-total-price" placeholder="0 ₽" disabled>
+                </div>
+            </div>
+
+            <div id="complex-formula" class="tab-content" style="display: none;">
+                <div class="form-group">
+                    <label for="input-amount-fixed">Количество правок</label>
+                    <input type="number" id="input-amount-fixed" placeholder="Введите количество правок">
+                </div>
+                <div class="form-group">
+                    <label for="input-working-hours">Количество рабочих часов</label>
+                    <input type="number" id="input-working-hours" placeholder="Введите рабочие часы">
+                </div>
+                <div class="form-group">
+                    <label for="input-range-risk">Диапазон рисков</label>
+                    <input type="range" id="input-range-risk" min="1" max="3" step="0.1">
+                    <output id="ratio-range-risk">1.5</output>
+                </div>
+                <div class="form-group">
+                    <label for="input-cf-total-price">Стоимость проекта (сложная формула)</label>
+                    <input type="text" id="input-cf-total-price" placeholder="0 ₽" disabled>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="text-center mt-5 p-4 bg-light">
-        <p>&copy; 2024 Freelancer Calculator</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./app.js"></script>
+    <script src="app.js"></script> <!-- Подключаем твой JavaScript код сюда -->
 </body>
 </html>

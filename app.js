@@ -33,10 +33,15 @@ const initializeElements = () => {
   ratioRangeRisk = getInput('ratio-range-risk');
   inputCfTotalPrice = getInput('input-cf-total-price');
 
-  if (inputRangeRisk && ratioRangeRisk) {
-      ratioRangeRisk.value = inputRangeRisk.value;
-      console.log(`Initialized range risk value: ${inputRangeRisk.value}`);
-  }
+// Обработчик для ползунка диапазона рисков
+if (inputRangeRisk && ratioRangeRisk) {
+  inputRangeRisk.addEventListener('input', (e) => {
+      ratioRangeRisk.value = e.target.value;
+      console.log(`Range risk updated: ${inputRangeRisk.value}`);
+      calculateComplexPrice(); // Пересчитываем сложную формулу при изменении диапазона рисков
+  });
+}
+
 
   bindEventListeners();
 };
@@ -65,18 +70,19 @@ const formatCurrency = (value) => {
 // Calculate hourly rate
 function calculateHourlyRate() {
   console.log('Calculating hourly rate...');
-  const monthIncome = parseInput(inputMonth);
-  const workDays = parseInput(inputWeek, defaultWeek);
-  const hoursPerDay = parseInput(inputDay, defaultDay);
-  
-  if (monthIncome && workDays && hoursPerDay) {
-      const hourlyRate = monthIncome / (workDays * hoursPerDay);
+  const monthIncome = parseInput(inputMonth); // Месячный доход
+  const totalDays = parseInput(inputWeek); // Теперь это общее количество дней в месяц
+  const hoursPerDay = parseInput(inputDay, defaultDay); // Количество часов в день
+
+  if (monthIncome && totalDays && hoursPerDay) {
+      const hourlyRate = monthIncome / (totalDays * hoursPerDay); // Рассчитываем на основе дней и часов
       inputHourlyRate.value = formatCurrency(hourlyRate);
       console.log(`Hourly rate calculated: ${hourlyRate}`);
   } else {
       console.log("Not enough data to calculate hourly rate.");
   }
 }
+
 
 // Calculate project price with basic formula
 function calculateSimplePrice() {
@@ -170,6 +176,28 @@ const bindEventListeners = () => {
       });
   }
 };
+
+// Функция для переключения между вкладками
+function openTab(event, tabName) {
+  var i, tabcontent, tabbuttons;
+  
+  // Скрываем все табы
+  tabcontent = document.getElementsByClassName("tab-content");
+  for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+  }
+
+  // Удаляем класс "active" со всех кнопок
+  tabbuttons = document.getElementsByClassName("tab-button");
+  for (i = 0; i < tabbuttons.length; i++) {
+      tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+  }
+
+  // Отображаем выбранный таб и добавляем класс "active" к кнопке
+  document.getElementById(tabName).style.display = "block";
+  event.currentTarget.className += " active";
+}
+
 
 // Initialize everything after the DOM content is fully loaded
 window.addEventListener('DOMContentLoaded', initializeElements);
